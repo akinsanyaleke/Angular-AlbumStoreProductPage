@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class ProductService {
   private _albumUrl : string = "../assets/album.json";
   constructor(private _http: Http) { }
+  
   private extractAlbum(response: Response){
     let body = response.json();
     return body || {};
@@ -15,7 +16,8 @@ export class ProductService {
     console.error('Observable error:', error);
     return Observable.throw(error.statusText);
   }
-  getAlbum(id : number) : Observable<any> {
-    return this._http.get(this._albumUrl).map(this.extractAlbum);
+  getAlbum(id : number) {
+    //return this._http.get(this._albumUrl).map(this.extractAlbum);
+    return this._http.get(this._albumUrl).map((response) => response.json());
   }
 }
