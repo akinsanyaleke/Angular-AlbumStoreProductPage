@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ProductService {
@@ -16,6 +16,6 @@ export class ProductService {
     return Observable.throw(error.statusText);
   }
   getAlbum(id : number) : Observable<any> {
-    return this._http.get(this._albumUrl).map(this.extractAlbum).catch(this.handleError);
+    return this._http.get(this._albumUrl).map(this.extractAlbum);
   }
 }
